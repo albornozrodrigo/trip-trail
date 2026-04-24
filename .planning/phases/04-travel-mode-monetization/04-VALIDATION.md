@@ -15,13 +15,13 @@ created: 2026-04-24
 
 ## Test Infrastructure
 
-| Property | Value |
-|----------|-------|
-| **Framework** | vitest + playwright |
-| **Config file** | vitest.config.ts, playwright.config.ts |
-| **Quick run command** | `npm run test -- --runInBand --changed` |
-| **Full suite command** | `npm run test && npm run test:e2e` |
-| **Estimated runtime** | ~180 seconds |
+| Property               | Value                                   |
+| ---------------------- | --------------------------------------- |
+| **Framework**          | vitest + playwright                     |
+| **Config file**        | vitest.config.ts, playwright.config.ts  |
+| **Quick run command**  | `npm run test -- --runInBand --changed` |
+| **Full suite command** | `npm run test && npm run test:e2e`      |
+| **Estimated runtime**  | ~180 seconds                            |
 
 ---
 
@@ -36,16 +36,16 @@ created: 2026-04-24
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Threat Ref | Secure Behavior | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|------------|-----------------|-----------|-------------------|-------------|--------|
-| 04-01-01 | 01 | 1 | 4.1, 4.2 | T-04-01-01 | Offline caches serve only trip-authorized snapshots | integration | `npm run test -- pwa-offline` | ❌ W0 | ⬜ pending |
-| 04-01-02 | 01 | 1 | 4.3 | T-04-01-02 | Alert scheduling validates trip ownership and time format | integration | `npm run test -- alerts` | ❌ W0 | ⬜ pending |
-| 04-02-01 | 02 | 2 | 4.4, 4.5, 4.6 | T-04-02-01 | Affiliate redirects are signed, logged, and provider constrained | integration | `npm run test -- affiliate-links` | ❌ W0 | ⬜ pending |
-| 04-02-02 | 02 | 2 | 4.4, 4.5, 4.6 | T-04-02-02 | UI shows provider links with explicit outbound disclosure | e2e | `npm run test:e2e -- affiliate-ui` | ❌ W0 | ⬜ pending |
-| 04-03-01 | 03 | 2 | 4.7 | T-04-03-01 | Billing webhooks update entitlements idempotently | integration | `npm run test -- billing-entitlements` | ❌ W0 | ⬜ pending |
-| 04-03-02 | 03 | 2 | 4.8 | T-04-03-02 | Analytics events follow allowlisted schema and PII policy | unit | `npm run test -- analytics-events` | ❌ W0 | ⬜ pending |
+| Task ID  | Plan | Wave | Requirement   | Threat Ref | Secure Behavior                                                  | Test Type   | Automated Command                      | File Exists | Status     |
+| -------- | ---- | ---- | ------------- | ---------- | ---------------------------------------------------------------- | ----------- | -------------------------------------- | ----------- | ---------- |
+| 04-01-01 | 01   | 1    | 4.1, 4.2      | T-04-01-01 | Offline caches serve only trip-authorized snapshots              | integration | `npm run test -- pwa-offline`          | ❌ W0       | ⬜ pending |
+| 04-01-02 | 01   | 1    | 4.3           | T-04-01-02 | Alert scheduling validates trip ownership and time format        | integration | `npm run test -- alerts`               | ❌ W0       | ⬜ pending |
+| 04-02-01 | 02   | 2    | 4.4, 4.5, 4.6 | T-04-02-01 | Affiliate redirects are signed, logged, and provider constrained | integration | `npm run test -- affiliate-links`      | ❌ W0       | ⬜ pending |
+| 04-02-02 | 02   | 2    | 4.4, 4.5, 4.6 | T-04-02-02 | UI shows provider links with explicit outbound disclosure        | e2e         | `npm run test:e2e -- affiliate-ui`     | ❌ W0       | ⬜ pending |
+| 04-03-01 | 03   | 2    | 4.7           | T-04-03-01 | Billing webhooks update entitlements idempotently                | integration | `npm run test -- billing-entitlements` | ❌ W0       | ⬜ pending |
+| 04-03-02 | 03   | 2    | 4.8           | T-04-03-02 | Analytics events follow allowlisted schema and PII policy        | unit        | `npm run test -- analytics-events`     | ❌ W0       | ⬜ pending |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+_Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky_
 
 ---
 
@@ -62,11 +62,11 @@ created: 2026-04-24
 
 ## Manual-Only Verifications
 
-| Behavior | Requirement | Why Manual | Test Instructions |
-|----------|-------------|------------|-------------------|
-| PWA install prompt acceptance across browsers | 4.1 | Browser heuristics vary and cannot be fully stabilized in CI | Test on Chrome, Safari, and Android browser install flow |
-| Notification permission and delivery path | 4.3 | OS-level permission UX cannot be fully simulated | Grant and deny permission; verify fallback messaging |
-| Subscription checkout UX quality | 4.7 | Payment UX and trust cues need human review | Run Stripe checkout in test mode and review post-purchase state |
+| Behavior                                      | Requirement | Why Manual                                                   | Test Instructions                                               |
+| --------------------------------------------- | ----------- | ------------------------------------------------------------ | --------------------------------------------------------------- |
+| PWA install prompt acceptance across browsers | 4.1         | Browser heuristics vary and cannot be fully stabilized in CI | Test on Chrome, Safari, and Android browser install flow        |
+| Notification permission and delivery path     | 4.3         | OS-level permission UX cannot be fully simulated             | Grant and deny permission; verify fallback messaging            |
+| Subscription checkout UX quality              | 4.7         | Payment UX and trust cues need human review                  | Run Stripe checkout in test mode and review post-purchase state |
 
 ---
 

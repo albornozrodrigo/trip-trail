@@ -14,7 +14,9 @@ export default function TripForm() {
   const [style, setStyle] = useState<string[]>([]);
 
   const toggleStyle = (value: string) => {
-    setStyle((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]));
+    setStyle((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
+    );
   };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -26,7 +28,13 @@ export default function TripForm() {
       const response = await fetch("/api/generateItinerary", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ destination, dateFrom, dateTo, numTravelers, style }),
+        body: JSON.stringify({
+          destination,
+          dateFrom,
+          dateTo,
+          numTravelers,
+          style,
+        }),
       });
 
       if (!response.ok) {
@@ -67,11 +75,23 @@ export default function TripForm() {
         </label>
         <label className="flex flex-col gap-1">
           Date from
-          <input className="rounded border p-2" type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} required />
+          <input
+            className="rounded border p-2"
+            type="date"
+            value={dateFrom}
+            onChange={(e) => setDateFrom(e.target.value)}
+            required
+          />
         </label>
         <label className="flex flex-col gap-1">
           Date to
-          <input className="rounded border p-2" type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} required />
+          <input
+            className="rounded border p-2"
+            type="date"
+            value={dateTo}
+            onChange={(e) => setDateTo(e.target.value)}
+            required
+          />
         </label>
         <label className="flex flex-col gap-1 md:col-span-2">
           Travelers
@@ -95,7 +115,9 @@ export default function TripForm() {
               type="button"
               onClick={() => toggleStyle(option)}
               className={`rounded-full border px-3 py-1 text-sm ${
-                style.includes(option) ? "bg-blue-600 text-white" : "bg-white text-zinc-700"
+                style.includes(option)
+                  ? "bg-blue-600 text-white"
+                  : "bg-white text-zinc-700"
               }`}
             >
               {option}

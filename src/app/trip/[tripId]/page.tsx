@@ -9,7 +9,11 @@ export default async function TripPage({ params }: TripPageProps) {
   const { tripId } = await params;
   const supabase = createServerSupabaseClient();
 
-  const { data: trip } = await supabase.from("trips").select("*").eq("id", tripId).single();
+  const { data: trip } = await supabase
+    .from("trips")
+    .select("*")
+    .eq("id", tripId)
+    .single();
   const { data: items } = await supabase
     .from("itineraries")
     .select("*")
@@ -33,7 +37,8 @@ export default async function TripPage({ params }: TripPageProps) {
             <div className="flex items-center justify-between">
               <strong>{item.activity_name}</strong>
               <span className="text-sm text-blue-700">
-                {item.time_start || ""} {item.time_end ? `- ${item.time_end}` : ""}
+                {item.time_start || ""}{" "}
+                {item.time_end ? `- ${item.time_end}` : ""}
               </span>
             </div>
             <p className="text-sm text-zinc-600">{item.location}</p>

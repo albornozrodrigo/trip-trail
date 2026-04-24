@@ -18,6 +18,7 @@ metrics:
 # Plan 02 Summary
 
 ## Completed Work
+
 - Implemented Claude prompt builder and generation utility.
 - Added itinerary generation API route with trip + itinerary persistence logic.
 - Created Zustand store for itinerary/loading/error state.
@@ -25,14 +26,17 @@ metrics:
 - Implemented day-by-day itinerary rendering and connected home page flow.
 
 ## Commits
-| Task | Commit | Description |
-|------|--------|-------------|
+
+| Task  | Commit  | Description                              |
+| ----- | ------- | ---------------------------------------- |
 | 01-02 | pending | Consolidated with plan execution commits |
 
 ## Deviations
+
 - Time parsing stores `time_start`/`time_end` as normalized text for compatibility with generated data.
 - Live API execution depends on valid Supabase and Anthropic credentials in `.env.local`.
 
 ## Self-Check: PASSED
+
 - Core loop artifacts exist and are wired.
 - Build completed successfully after integration.

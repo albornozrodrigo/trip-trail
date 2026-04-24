@@ -18,6 +18,7 @@ metrics:
 # Plan 01 Summary
 
 ## Completed Work
+
 - Bootstrapped Next.js App Router project with TypeScript and Tailwind.
 - Added Supabase clients for browser and server usage.
 - Added auth confirmation callback route and auth helper utilities.
@@ -25,14 +26,17 @@ metrics:
 - Added environment template for required API keys and base URL.
 
 ## Commits
-| Task | Commit | Description |
-|------|--------|-------------|
+
+| Task  | Commit  | Description                              |
+| ----- | ------- | ---------------------------------------- |
 | 01-01 | pending | Consolidated with plan execution commits |
 
 ## Deviations
+
 - `create-next-app` generated Next.js 16.2.4 scaffold (compatible with project constraints).
 - Runtime DB migration execution in Supabase dashboard is pending manual credentials.
 
 ## Self-Check: PASSED
+
 - Required artifacts for Plan 01 exist.
 - App build succeeds with the created foundation.

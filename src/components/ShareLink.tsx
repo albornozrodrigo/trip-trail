@@ -20,7 +20,8 @@ export default function ShareLink() {
         body: JSON.stringify({ tripId: currentItinerary.tripId }),
       });
       const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error || "Could not generate share link");
+      if (!response.ok)
+        throw new Error(payload.error || "Could not generate share link");
       setShareUrl(payload.shareUrl);
     } catch (error) {
       alert(error instanceof Error ? error.message : "Failed to generate link");
@@ -50,8 +51,16 @@ export default function ShareLink() {
         </button>
       ) : (
         <div className="mt-3 space-y-2">
-          <input readOnly className="w-full rounded border p-2" value={shareUrl} />
-          <button type="button" onClick={copyLink} className="rounded border px-3 py-2">
+          <input
+            readOnly
+            className="w-full rounded border p-2"
+            value={shareUrl}
+          />
+          <button
+            type="button"
+            onClick={copyLink}
+            className="rounded border px-3 py-2"
+          >
             {copied ? "Copied" : "Copy link"}
           </button>
         </div>

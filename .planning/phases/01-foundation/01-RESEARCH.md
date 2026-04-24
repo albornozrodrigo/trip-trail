@@ -11,7 +11,8 @@
 **Decision:** Use the recommended stack as documented in PROJECT.md
 
 ### Frontend Stack
-- **Framework:** Next.js 14 (App Router)
+
+- **Framework:** Next.js 16 (App Router)
   - Why: Modern, SSR-capable, Vercel-native, handles both client and server code
   - Justification: Perfect for real-time data + server-side generation
   - Version: 14.x (latest LTS equivalent)
@@ -27,6 +28,7 @@
   - Setup: ~3 stores (user auth, trip state, itinerary state)
 
 ### Backend & Database
+
 - **Backend-as-a-Service:** Supabase
   - Why: PostgreSQL + Auth + Realtime in one platform
   - Justification: Zero infrastructure, free tier supports Phase 1, built-in JWT auth, Row-Level Security (RLS) for future collaboration
@@ -45,6 +47,7 @@
   - Setup: Configure Google OAuth app credentials
 
 ### AI/LLM Integration
+
 - **LLM:** Claude API (Anthropic)
   - Why: High-quality itinerary generation, streaming support, reliability
   - Justification: Inspirock-quality itineraries require strong reasoning; Claude > GPT-4 for travel planning specificity
@@ -57,6 +60,7 @@
   - Setup: Create `/api/generateItinerary` endpoint
 
 ### Deployment
+
 - **Hosting:** Vercel
   - Why: Next.js native, auto-deploys from GitHub, serverless functions, edge functions for future optimization
   - Justification: GitHub → Vercel → live in 30 seconds; no DevOps overhead
@@ -95,7 +99,9 @@ Generate Share Link
 ## Critical Path to Launch
 
 ### Database Schema (BLOCKING)
+
 Must create before any frontend/backend work:
+
 - `users` table (managed by Supabase Auth)
 - `trips` table (core data)
 - `itineraries` table (generated content)
@@ -103,16 +109,19 @@ Must create before any frontend/backend work:
 - Indexes on `trip_id`, `user_id`, `created_at`
 
 ### Claude Prompt Engineering (BLOCKING)
+
 - Prompt must accept: { destination, dateRange, numTravelers, preferredStyle }
 - Output must be valid JSON (parseable)
 - Must support 50+ destinations without hallucination
 
 **Test cases:**
+
 - Tokyo, 3 days, 2 travelers → ✓ valid JSON, realistic activities
 - Iceland Ring Road, 7 days, 4 travelers → ✓ valid JSON, realistic
 - Edge case: unknown destination → graceful degradation (generic suggestions)
 
 ### Authentication Flow (BLOCKING)
+
 - Email signup → Supabase Auth creates user
 - Google OAuth → same
 - Session persists → JWT in httpOnly cookie (Supabase handles this)
@@ -122,13 +131,13 @@ Must create before any frontend/backend work:
 
 ## Known Risks & Mitigations
 
-| Risk | Severity | Mitigation |
-|------|----------|-----------|
-| Claude API rate limits exceeded | Medium | Monitor usage, set daily budget via Anthropic dashboard, implement backoff |
-| Itinerary quality inconsistent | High | Prompt testing with 20+ destinations before launch, human review of 3–5 itineraries |
-| Supabase RLS misconfigured | High | Test row-level security before deploying; share links should NOT expose trip to unauthorized users |
-| Share link token predictable | High | Use `crypto.randomUUID()` for tokens, not incremental IDs |
-| Database schema missing indexes | Medium | Add indexes on `trip_id`, `user_id`, `created_at` before deploying; run `EXPLAIN ANALYZE` on queries |
+| Risk                            | Severity | Mitigation                                                                                           |
+| ------------------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| Claude API rate limits exceeded | Medium   | Monitor usage, set daily budget via Anthropic dashboard, implement backoff                           |
+| Itinerary quality inconsistent  | High     | Prompt testing with 20+ destinations before launch, human review of 3–5 itineraries                  |
+| Supabase RLS misconfigured      | High     | Test row-level security before deploying; share links should NOT expose trip to unauthorized users   |
+| Share link token predictable    | High     | Use `crypto.randomUUID()` for tokens, not incremental IDs                                            |
+| Database schema missing indexes | Medium   | Add indexes on `trip_id`, `user_id`, `created_at` before deploying; run `EXPLAIN ANALYZE` on queries |
 
 ---
 
@@ -149,31 +158,36 @@ Must create before any frontend/backend work:
 ## Validation Architecture
 
 **Dimension 1 — Core Loop (RED/GREEN/REFACTOR)**
+
 - Test: `POST /api/generateItinerary` → itinerary JSON structure valid
 - Test: Itinerary displays without errors
 - Test: Share link generates and is accessible
 
 **Dimension 2 — Database Integrity**
+
 - Test: User created → can generate multiple trips
 - Test: Trip owner can view their trips
 - Test: Non-owner cannot access via direct trip ID (RLS enforced)
 - Test: Share link works for unauthed users
 
 **Dimension 3 — API Quality**
+
 - Test: Claude API response <10 seconds
 - Test: Invalid input (missing destination) → 400 + helpful message
 - Test: Server error (Claude offline) → 500 + logged, user sees "try again"
 
 **Dimension 4 — Security**
+
 - Test: Authentication required for private endpoints
 - Test: Share tokens are cryptographically random
 - Test: No PII in URLs or logs
 
 **Dimension 5 — UI/UX**
+
 - Test: Form is mobile-responsive
 - Test: Loading state shown during generation
 - Test: Error messages are user-friendly
 
 ---
 
-*Last updated: April 24, 2026 — Phase 1 technical research*
+_Last updated: April 24, 2026 — Phase 1 technical research_

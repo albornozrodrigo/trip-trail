@@ -19,7 +19,11 @@ export default async function SharePage({ params }: SharePageProps) {
     notFound();
   }
 
-  const { data: trip } = await supabase.from("trips").select("*").eq("id", link.trip_id).single();
+  const { data: trip } = await supabase
+    .from("trips")
+    .select("*")
+    .eq("id", link.trip_id)
+    .single();
   const { data: items } = await supabase
     .from("itineraries")
     .select("*")
@@ -54,7 +58,8 @@ export default async function SharePage({ params }: SharePageProps) {
                   <div className="flex items-start justify-between gap-2">
                     <p className="font-medium">{item.activity_name}</p>
                     <p className="text-sm text-blue-700">
-                      {item.time_start || ""} {item.time_end ? `- ${item.time_end}` : ""}
+                      {item.time_start || ""}{" "}
+                      {item.time_end ? `- ${item.time_end}` : ""}
                     </p>
                   </div>
                   <p className="text-sm text-zinc-600">{item.location}</p>

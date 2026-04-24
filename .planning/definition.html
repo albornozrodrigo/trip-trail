@@ -1,0 +1,273 @@
+
+<style>
+  .section { margin: 0 0 2rem; }
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 12px; font-weight: 500; }
+  .pill-blue { background: #E6F1FB; color: #0C447C; }
+  .pill-teal { background: #E1F5EE; color: #085041; }
+  .pill-amber { background: #FAEEDA; color: #633806; }
+  .pill-coral { background: #FAECE7; color: #4A1B0C; }
+  .pill-purple { background: #EEEDFE; color: #26215C; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .feature-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.9rem 1rem; }
+  .feature-icon { font-size: 20px; margin-bottom: 8px; }
+  .feature-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+  .feature-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin: 0; }
+  .phase { border-left: 2px solid var(--color-border-secondary); padding-left: 1rem; margin-bottom: 1.2rem; }
+  .phase-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-tertiary); margin: 0 0 4px; }
+  .phase-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 6px; }
+  .phase-items { font-size: 13px; color: var(--color-text-secondary); line-height: 1.8; margin: 0; }
+  .persona-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .persona { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem; text-align: center; }
+  .persona-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 6px 0 2px; }
+  .persona-desc { font-size: 11px; color: var(--color-text-secondary); }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+  .header-badge { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+  .logo { width: 40px; height: 40px; border-radius: 10px; background: #3B8BD4; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500; font-size: 18px; }
+  .metric-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem; text-align: center; }
+  .metric-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .metric-lbl { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+  .screen-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .screen { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden; }
+  .screen-header { padding: 8px 10px; font-size: 11px; font-weight: 500; color: var(--color-text-secondary); background: var(--color-background-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .screen-body { padding: 10px; }
+  .screen-row-item { height: 10px; border-radius: 4px; background: var(--color-background-secondary); margin-bottom: 6px; }
+  .itinerary-block { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; }
+  .day-dot { width: 22px; height: 22px; border-radius: 50%; background: #B5D4F4; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: #0C447C; flex-shrink: 0; }
+  .day-content { flex: 1; }
+  .day-title { font-size: 11px; font-weight: 500; color: var(--color-text-primary); }
+  .day-sub { font-size: 10px; color: var(--color-text-secondary); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 99px; background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+</style>
+
+<h2 class="sr-only">TripTrail — Definição do produto</h2>
+
+<div style="padding: 1.5rem 0 0;">
+
+  <div class="header-badge">
+    <div class="logo">T</div>
+    <div>
+      <div style="font-size: 20px; font-weight: 500; color: var(--color-text-primary);">TripTrail</div>
+      <div style="font-size: 13px; color: var(--color-text-secondary);">Seu roteiro inteligente, do zero ao aeroporto</div>
+    </div>
+    <div style="margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap;">
+      <span class="pill pill-blue">v1.0 — MVP</span>
+      <span class="pill pill-teal">GSD Build</span>
+    </div>
+  </div>
+
+  <div class="metric-row" style="margin-bottom: 2rem;">
+    <div class="metric"><div class="metric-val">IA</div><div class="metric-lbl">Roteiros gerados</div></div>
+    <div class="metric"><div class="metric-val">D×D</div><div class="metric-lbl">Dia a dia</div></div>
+    <div class="metric"><div class="metric-val">🌍</div><div class="metric-lbl">Qualquer destino</div></div>
+    <div class="metric"><div class="metric-val">0→✈</div><div class="metric-lbl">Input mínimo</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div style="font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px;">Visão do produto</div>
+    <div style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 1rem;">
+      TripTrail é um planejador de viagens com inteligência artificial que transforma destino + datas + preferências em um roteiro completo, editável e compartilhável — em segundos. Inspirado no Inspirock, mas construído para o usuário moderno: mobile-first, colaborativo e com sugestões contextuais em tempo real.
+    </div>
+    <div class="card" style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; font-style: italic;">
+      "Você diz para onde quer ir e o que curte. A gente monta o melhor roteiro possível — e você ajusta o que quiser."
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div style="font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem;">Funcionalidades core</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <p class="feature-title">Geração de roteiro por IA</p>
+        <p class="feature-desc">O usuário informa destino, datas e estilo de viagem. A IA cria um itinerário dia a dia completo.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <p class="feature-title">Edição drag & drop</p>
+        <p class="feature-desc">Reordene atividades, troque atrações, adicione paradas — tudo com interface intuitiva.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <p class="feature-title">Mapa integrado</p>
+        <p class="feature-desc">Veja o roteiro no mapa em tempo real, com rotas otimizadas entre as atrações do dia.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <p class="feature-title">Planejamento colaborativo</p>
+        <p class="feature-desc">Convide pessoas para editar o roteiro juntos, com comentários e votação de atividades.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <p class="feature-title">Estimativa de orçamento</p>
+        <p class="feature-desc">Custo estimado por atividade e total da viagem, com controle de gasto real.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <p class="feature-title">Modo offline / viagem</p>
+        <p class="feature-desc">Roteiro disponível offline com alertas de horários, reservas e check-ins no dia.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div style="font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem;">Personas principais</div>
+    <div class="persona-row">
+      <div class="persona">
+        <div style="font-size: 22px;">🎒</div>
+        <div class="persona-name">O Explorador</div>
+        <div class="persona-desc">Viaja solo, quer aventura, pouco tempo para planejar</div>
+      </div>
+      <div class="persona">
+        <div style="font-size: 22px;">👫</div>
+        <div class="persona-name">O Casal</div>
+        <div class="persona-desc">Viagens românticas, querem equilíbrio entre relaxar e explorar</div>
+      </div>
+      <div class="persona">
+        <div style="font-size: 22px;">👨‍👩‍👧‍👦</div>
+        <div class="persona-name">A Família</div>
+        <div class="persona-desc">Precisam conciliar interesses diferentes, foco em logística</div>
+      </div>
+      <div class="persona">
+        <div style="font-size: 22px;">🧑‍💼</div>
+        <div class="persona-name">O Executivo</div>
+        <div class="persona-desc">Mistura negócios e lazer, tempo é escasso</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div style="font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem;">Preview de telas</div>
+    <div class="screen-row">
+      <div class="screen">
+        <div class="screen-header">Onboarding — preferências</div>
+        <div class="screen-body">
+          <div style="font-size: 10px; color: var(--color-text-secondary); margin-bottom: 8px;">Para onde você vai?</div>
+          <div style="height: 28px; border-radius: 6px; border: 0.5px solid var(--color-border-secondary); display:flex; align-items:center; padding: 0 8px; margin-bottom: 10px;"><span style="font-size:10px; color: var(--color-text-tertiary);">Ex: Tokyo, Japão</span></div>
+          <div style="font-size: 10px; color: var(--color-text-secondary); margin-bottom: 6px;">Estilo de viagem</div>
+          <div class="tag-row">
+            <span class="tag" style="background:#E6F1FB; color:#0C447C; border-color:#B5D4F4;">Cultura</span>
+            <span class="tag">Gastronomia</span>
+            <span class="tag">Natureza</span>
+            <span class="tag" style="background:#E6F1FB; color:#0C447C; border-color:#B5D4F4;">Aventura</span>
+          </div>
+        </div>
+      </div>
+      <div class="screen">
+        <div class="screen-header">Roteiro gerado — dia a dia</div>
+        <div class="screen-body">
+          <div class="itinerary-block">
+            <div class="day-dot">D1</div>
+            <div class="day-content">
+              <div class="day-title">Chegada em Tokyo</div>
+              <div class="day-sub">Shinjuku · Shibuya · Harajuku</div>
+            </div>
+          </div>
+          <div class="itinerary-block">
+            <div class="day-dot">D2</div>
+            <div class="day-content">
+              <div class="day-title">Templos e cultura</div>
+              <div class="day-sub">Asakusa · Ueno · Akihabara</div>
+            </div>
+          </div>
+          <div class="itinerary-block">
+            <div class="day-dot">D3</div>
+            <div class="day-content">
+              <div class="day-title">Natureza e gastronomia</div>
+              <div class="day-sub">Mt. Fuji area · Ramen tour</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="screen">
+        <div class="screen-header">Painel colaborativo</div>
+        <div class="screen-body">
+          <div style="display:flex; gap:5px; margin-bottom: 10px;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#B5D4F4;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:500;color:#0C447C;">A</div>
+            <div style="width:18px;height:18px;border-radius:50%;background:#9FE1CB;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:500;color:#085041;">M</div>
+            <div style="width:18px;height:18px;border-radius:50%;background:#FAC775;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:500;color:#633806;">J</div>
+            <span style="font-size:10px; color:var(--color-text-secondary); margin-left:4px; line-height:18px;">3 editando</span>
+          </div>
+          <div style="background:var(--color-background-secondary);border-radius:6px;padding:8px;font-size:10px;color:var(--color-text-secondary);margin-bottom:8px;">
+            💬 <strong style="color:var(--color-text-primary);">Mari:</strong> Acho que o D2 tem atividades demais, consegue ajustar?
+          </div>
+          <div style="display:flex;gap:6px;">
+            <div style="flex:1;height:24px;border-radius:6px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;font-size:10px;color:#085041;">👍 Aprovar</div>
+            <div style="flex:1;height:24px;border-radius:6px;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--color-text-secondary);">Editar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div style="font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 1rem;">GSD — fases de construção</div>
+
+    <div class="phase">
+      <div class="phase-label"><span class="pill pill-blue">Fase 1 — semanas 1-2</span></div>
+      <div class="phase-title">Foundation & Core Loop</div>
+      <div class="phase-items">
+        Autenticação (email + Google) · Input de viagem (destino, datas, nº de pessoas) · Integração com LLM para geração de roteiro · Visualização do roteiro dia a dia · Deploy em produção (vercel + supabase)
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label"><span class="pill pill-teal">Fase 2 — semanas 3-4</span></div>
+      <div class="phase-title">Edição & Personalização</div>
+      <div class="phase-items">
+        Drag & drop de atividades · Adicionar/remover/trocar atrações · Preferências de estilo (cultura, gastronomia, aventura, relax) · Mapa integrado (Google Maps / Mapbox) · Compartilhamento de roteiro via link
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label"><span class="pill pill-amber">Fase 3 — semanas 5-6</span></div>
+      <div class="phase-title">Colaboração & Orçamento</div>
+      <div class="phase-items">
+        Modo colaborativo (convide viajantes) · Sistema de comentários e votação · Estimativa de orçamento por atividade · Integração com APIs de preço (hotel, atrações) · Notificações e lembretes
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-label"><span class="pill pill-coral">Fase 4 — semana 7+</span></div>
+      <div class="phase-title">Modo Viagem & Monetização</div>
+      <div class="phase-items">
+        Roteiro offline (PWA) · Alertas de horário no dia · Reservas via afiliados (booking, viator, GetYourGuide) · Plano premium (IA ilimitada, exportar PDF/PDF) · Analytics de uso
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div style="font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.75rem;">Stack recomendada</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <span class="pill pill-blue">Next.js 16 (App Router)</span>
+      <span class="pill pill-teal">Supabase (auth + DB)</span>
+      <span class="pill pill-purple">Claude API (roteiros)</span>
+      <span class="pill pill-amber">Mapbox GL JS</span>
+      <span class="pill pill-coral">Vercel (deploy)</span>
+      <span class="pill pill-blue">Tailwind CSS</span>
+      <span class="pill pill-teal">Zustand (state)</span>
+      <span class="pill pill-amber">dnd-kit (drag & drop)</span>
+    </div>
+  </div>
+
+  <div style="text-align:center; padding: 1rem 0 0.5rem;">
+    <button onclick="sendPrompt('Me ajude a criar o PRD detalhado do TripTrail com user stories e critérios de aceitação para a Fase 1')" style="font-size:13px;">Gerar PRD da Fase 1 ↗</button>
+    <span style="margin: 0 8px; color: var(--color-text-tertiary); font-size:13px;">ou</span>
+    <button onclick="sendPrompt('Crie o schema do banco de dados Supabase para o TripTrail')" style="font-size:13px;">Modelar banco de dados ↗</button>
+  </div>
+
+</div>
