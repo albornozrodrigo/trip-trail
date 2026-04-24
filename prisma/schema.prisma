@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @db.Uuid
+  email     String   @unique
+  fullName  String?  @map("full_name")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  trips     Trip[]
+
+  @@map("users")
+}
+
+model Trip {
+  id           String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId       String      @map("user_id") @db.Uuid
+  destination  String
+  dateFrom     DateTime    @map("date_from") @db.Date
+  dateTo       DateTime    @map("date_to") @db.Date
+  numTravelers Int         @default(1) @map("num_travelers")
+  travelStyle  String[]    @default([]) @map("travel_style")
+  createdAt    DateTime    @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt    DateTime    @default(now()) @map("updated_at") @db.Timestamp(6)
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  itineraries  Itinerary[]
+  shareLinks   ShareLink[]
+
+  @@index([userId], map: "idx_trips_user_id")
+  @@map("trips")
+}
+
+model Itinerary {
+  id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tripId         String   @map("trip_id") @db.Uuid
+  dayNumber      Int      @map("day_number")
+  activityOrder  Int      @map("activity_order")
+  activityName   String   @map("activity_name")
+  location       String?
+  timeStart      String?  @map("time_start")
+  timeEnd        String?  @map("time_end")
+  description    String?
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt      DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+  trip           Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  @@index([tripId], map: "idx_itineraries_trip_id")
+  @@map("itineraries")
+}
+
+model ShareLink {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  tripId     String   @map("trip_id") @db.Uuid
+  token      String   @unique
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  trip       Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  @@index([token], map: "idx_share_links_token")
+  @@map("share_links")
+}
