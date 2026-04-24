@@ -27,6 +27,7 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 **Depends on:** None
 
 ### Theme
+
 **Core feedback loop:** Destination + Dates → AI Itinerary → Shareable Link
 
 ### Deliverables
@@ -40,13 +41,13 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 
 ### Key Decisions
 
-| Decision | Rationale | Owner |
-|----------|-----------|-------|
-| Claude API for generation | Quality > speed in MVP; streaming support | Product |
-| Single destination per trip v1 | Scope; multi-destination in Phase 2 | Product |
-| No map in Phase 1 | Faster MVP; add in Phase 2 | Product |
-| Supabase for auth + DB | Single platform, fast iteration | Tech |
-| Vercel for deployment | Next.js native, instant scaling | Tech |
+| Decision                       | Rationale                                 | Owner   |
+| ------------------------------ | ----------------------------------------- | ------- |
+| Claude API for generation      | Quality > speed in MVP; streaming support | Product |
+| Single destination per trip v1 | Scope; multi-destination in Phase 2       | Product |
+| No map in Phase 1              | Faster MVP; add in Phase 2                | Product |
+| Supabase for auth + DB         | Single platform, fast iteration           | Tech    |
+| Vercel for deployment          | Next.js native, instant scaling           | Tech    |
 
 ### Success Metrics
 
@@ -64,6 +65,7 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 **Depends on:** Phase 1 (Core Loop working)
 
 ### Theme
+
 **User agency:** Itinerary → Drag, edit, style → Personalized itinerary
 
 ### Deliverables
@@ -77,11 +79,11 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 
 ### Key Decisions
 
-| Decision | Rationale | Owner |
-|----------|-----------|-------|
-| dnd-kit for DnD | Accessible, performant, modern | Frontend |
-| Mapbox over Google Maps | Better offline support, cheaper at scale | Tech |
-| Travel style influences prompt | Improves generation quality for Phase 1 users | Product |
+| Decision                       | Rationale                                     | Owner    |
+| ------------------------------ | --------------------------------------------- | -------- |
+| dnd-kit for DnD                | Accessible, performant, modern                | Frontend |
+| Mapbox over Google Maps        | Better offline support, cheaper at scale      | Tech     |
+| Travel style influences prompt | Improves generation quality for Phase 1 users | Product  |
 
 ### Success Metrics
 
@@ -99,6 +101,7 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 **Depends on:** Phase 2 (Editing working smoothly)
 
 ### Theme
+
 **Social + financial:** "We plan together, we budget together"
 
 ### Deliverables
@@ -114,17 +117,25 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 
 ### Key Decisions
 
-| Decision | Rationale | Owner |
-|----------|-----------|-------|
-| Operational transform for sync | Handles concurrent edits without conflicts | Backend |
-| Voting not approval-only | Democratic, reduces group friction | Product |
-| Budget API: hardcoded prices Phase 3 | Real APIs (Booking, Viator) Phase 4 | Tech |
+| Decision                             | Rationale                                  | Owner   |
+| ------------------------------------ | ------------------------------------------ | ------- |
+| Operational transform for sync       | Handles concurrent edits without conflicts | Backend |
+| Voting not approval-only             | Democratic, reduces group friction         | Product |
+| Budget API: hardcoded prices Phase 3 | Real APIs (Booking, Viator) Phase 4        | Tech    |
 
 ### Success Metrics
 
 - 30% of trips have 2+ collaborators
 - Real-time sync latency <2 seconds
 - Budget tracking adoption >70%
+
+### Plans
+
+**3 plans in 2 waves:**
+
+- [ ] **03-01-PLAN.md** (Wave 1) - Collaboration foundation (schema, invites, presence)
+- [ ] **03-02-PLAN.md** (Wave 2) - Social collaboration (comments, voting, notifications)
+- [ ] **03-03-PLAN.md** (Wave 2) - Budget and expense layer (estimates, actuals, split)
 
 ---
 
@@ -136,6 +147,7 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 **Depends on:** Phase 3 (Collaboration working)
 
 ### Theme
+
 **Completeness + revenue:** "Travel with TripTrail, book through us"
 
 ### Deliverables
@@ -149,17 +161,25 @@ Deploy                | map, preferences       | Comments, voting    | Bookings,
 
 ### Key Decisions
 
-| Decision | Rationale | Owner |
-|----------|-----------|-------|
-| Service worker for offline | Works offline, no connection required | Frontend |
-| Affiliate commission model | Free customer acquisition channel | Business |
-| Premium tier in parallel | Launch monetization same phase as main features | Product |
+| Decision                   | Rationale                                       | Owner    |
+| -------------------------- | ----------------------------------------------- | -------- |
+| Service worker for offline | Works offline, no connection required           | Frontend |
+| Affiliate commission model | Free customer acquisition channel               | Business |
+| Premium tier in parallel   | Launch monetization same phase as main features | Product  |
 
 ### Success Metrics
 
 - 80%+ of PWA installations result in 2+ trips planned
 - Affiliate revenue > 5% of total engagement
 - Premium conversion >15%
+
+### Plans
+
+**3 plans in 2 waves:**
+
+- [ ] **04-01-PLAN.md** (Wave 1) - PWA + offline + alerts foundation
+- [ ] **04-02-PLAN.md** (Wave 2) - Affiliate links and click attribution (Booking, Viator, GetYourGuide)
+- [ ] **04-03-PLAN.md** (Wave 2) - Premium billing (Stripe) and analytics instrumentation
 
 ---
 
@@ -180,13 +200,13 @@ No parallel phases in this roadmap (coarse granularity per config).
 
 ## Risk Registry
 
-| Risk | Severity | Mitigation | Owner |
-|------|----------|-----------|-------|
-| Claude prompt quality inconsistent | High | Test with 50+ real destinations Phase 1 week 1 | Product |
-| LLM token costs spiral | High | Implement prompt caching, monitor daily | Tech |
-| Map rendering slow for complex routes | Medium | Benchmark with 20-activity day in Phase 2 week 3 | Frontend |
-| Collaborative sync conflicts | High | Stress test with 5 concurrent editors in Phase 3 week 5 | Backend |
-| Premium adoption too low | Medium | User research Phase 3 on feature value | Product |
+| Risk                                  | Severity | Mitigation                                              | Owner    |
+| ------------------------------------- | -------- | ------------------------------------------------------- | -------- |
+| Claude prompt quality inconsistent    | High     | Test with 50+ real destinations Phase 1 week 1          | Product  |
+| LLM token costs spiral                | High     | Implement prompt caching, monitor daily                 | Tech     |
+| Map rendering slow for complex routes | Medium   | Benchmark with 20-activity day in Phase 2 week 3        | Frontend |
+| Collaborative sync conflicts          | High     | Stress test with 5 concurrent editors in Phase 3 week 5 | Backend  |
+| Premium adoption too low              | Medium   | User research Phase 3 on feature value                  | Product  |
 
 ---
 
@@ -206,24 +226,28 @@ Items deferred for later consideration:
 ## Validation Gates
 
 ### Phase 1 Exit Gate
+
 - [ ] Core generation loop works end-to-end
 - [ ] 10 real users completed a trip
 - [ ] No critical bugs (P0) outstanding
 - [ ] Deploy to production stable 48 hours
 
 ### Phase 2 Exit Gate
+
 - [ ] Editing comfortable without friction (user testing)
 - [ ] Map integration working for 10+ activities
 - [ ] <5% drag interaction abandonment rate
 - [ ] Performance budget met (LCP <2.5s)
 
 ### Phase 3 Exit Gate
+
 - [ ] Multi-user trips completed with 2+ real collaborators
 - [ ] Sync latency <2 seconds (real-time feel)
 - [ ] Budget tracking adopted by >70% of users
 - [ ] No conflict-induced data loss
 
 ### Phase 4 Exit Gate
+
 - [ ] PWA install rate >30% of web visits
 - [ ] Affiliate revenue tracking working end-to-end
 - [ ] Premium tier available, >15% conversion
@@ -236,12 +260,12 @@ Items deferred for later consideration:
 **Total Duration:** 7+ weeks (aggressive)  
 **Implied Team:** 1–2 people (GSD single-contributor optimized)
 
-| Week | Focus | Phase |
-|------|-------|-------|
-| 1–2 | Auth, generation, deploy | Phase 1 |
-| 3–4 | Editing, map, preferences | Phase 2 |
-| 5–6 | Collaboration, budget, comments | Phase 3 |
-| 7+ | PWA, affiliate, premium, monetization | Phase 4 |
+| Week | Focus                                 | Phase   |
+| ---- | ------------------------------------- | ------- |
+| 1–2  | Auth, generation, deploy              | Phase 1 |
+| 3–4  | Editing, map, preferences             | Phase 2 |
+| 5–6  | Collaboration, budget, comments       | Phase 3 |
+| 7+   | PWA, affiliate, premium, monetization | Phase 4 |
 
 ---
 
@@ -253,4 +277,4 @@ Items deferred for later consideration:
 
 ---
 
-*Last updated: April 24, 2026 — Roadmap initialization*
+_Last updated: April 24, 2026 — Roadmap initialization_
